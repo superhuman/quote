@@ -31,11 +31,10 @@ func encode(reader io.Reader) error {
 	if err != nil {
 		return err
 	}
-	output, err := json.Marshal(string(str))
-	if err != nil {
-		return err
-	}
-	fmt.Println(string(output))
+	encoder := json.NewEncoder(os.Stdout)
+	encoder.SetEscapeHTML(false)
+	encoder.Encode(string(str))
+	fmt.Println("")
 	return nil
 }
 
